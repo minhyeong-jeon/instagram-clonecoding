@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/insta
+    username: insta
+    password: 1234
+    
+  jpa: 
+    open-in-view: true #컨트롤러가 끝날때까지 세션이 유지 
+    hibernate:
+      ddl-auto: update #할때마다 데이터베이스 생성
+      naming: # 네이밍 전략 방식 모델에있는 그대로 적힘
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+      
+  #사 진을 업로드 해야하는데 max사이즈 2mb으로 지정
+  servlet: 
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+
+  # 시큐리티 처음에 로그인 설정 user였는데 바꿀수 있음
+  security: 
+    user:
+      name: test
+      password: 1234   
+# 사진을 업로드하면/ 배포를 하면 리눅스에서 경로를 설정해주면됨.
+file:
+  path: C:/src/instagram/src/main/resources/upload/
+  
+
